@@ -77,3 +77,13 @@ python test.py --split_type fvfv --sh unseenunheard --test random
 ```
 
 ## Citing SBNet
+```
+@inproceedings{saeed2022fusion,
+  title={Fusion and orthogonal projection for improved face-voice association},
+  author={Saeed, Muhammad Saad and Khan, Muhammad Haris and Nawaz, Shah and Yousaf, Muhammad Haroon and Del Bue, Alessio},
+  booktitle={ICASSP 2022-2022 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)},
+  pages={7057--7061},
+  year={2022},
+  organization={IEEE}
+}
+```
