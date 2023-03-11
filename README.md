@@ -56,7 +56,7 @@ For face feature extraction we use [Facenet](https://arxiv.org/abs/1503.03832). 
 ### Voice Feature Extraction
 For Voice Embeddings we use the method described in [Utterance Level Aggregator](https://arxiv.org/abs/1902.10107). The code we used is released by authors and is publicly available [here](https://github.com/WeidiXie/VGG-Speaker-Recognition)![GitHub stars](https://img.shields.io/github/stars/WeidiXie/VGG-Speaker-Recognition.svg?logo=github&label=Stars)
 ### Extracted Features
-The face and voice features used in our work can be accessed [here](https://drive.google.com/drive/folders/1O6VaVlV6k_WM-sXqFeAkXkX9iUddVNf7?usp=sharing). Once downloaded, theey should be placed like this:
+The face and voice features used in our work can be accessed [here](https://drive.google.com/drive/folders/1O6VaVlV6k_WM-sXqFeAkXkX9iUddVNf7?usp=sharing). Once downloaded, place the features like this:
 ```
 |-- data
   |-- voice
