@@ -8,7 +8,7 @@ Official implementation of SBNet as described in "Single-branch Network for Mult
 </p>
 
 <p align="center">
-  <img src="imgs/title.PNG" width="40%"/>
+  <img src="imgs/title.PNG" width="60%"/>
 </p>
 
 ## Proposed Methodology
@@ -16,8 +16,8 @@ a) Two independent modality-specific embedding networks to extract features (lef
 network (right) having two independent modality-specific branches to learn discriminative joint representations of the
 multimodal task. (b) Proposed network with a single modality-invariant branch.
 <p align="center"> 
-  <img src="imgs/two_branch.jpg" width="35%"/>
-  <img src="imgs/network.jpg" width="35%"/>
+  <img src="imgs/two_branch.jpg" width="40%"/>
+  <img src="imgs/network.jpg" width="40%"/>
  </p>
 
 
