@@ -56,7 +56,19 @@ For face feature extraction we use [Facenet](https://arxiv.org/abs/1503.03832). 
 ### Voice Feature Extraction
 For Voice Embeddings we use the method described in [Utterance Level Aggregator](https://arxiv.org/abs/1902.10107). The code we used is released by authors and is publicly available [here](https://github.com/WeidiXie/VGG-Speaker-Recognition)![GitHub stars](https://img.shields.io/github/stars/WeidiXie/VGG-Speaker-Recognition.svg?logo=github&label=Stars)
 ### Extracted Features
-The face and voice features used in our work can be accessed [here](https://drive.google.com/drive/folders/1O6VaVlV6k_WM-sXqFeAkXkX9iUddVNf7?usp=sharing).
+The face and voice features used in our work can be accessed [here](https://drive.google.com/drive/folders/1O6VaVlV6k_WM-sXqFeAkXkX9iUddVNf7?usp=sharing). Once downloaded, theey should be placed like this:
+```
+|-- data
+  |-- voice
+    |-- .csv files
+  |-- face
+    |--  .csv files
+|-- imgs
+|-- ssnet_cent_git
+|-- ssnet_fop
+|-- twobranch_cent_git
+|-- twobranch_fop
+```
 
 ## Training and Testing
 ### FOP Loss
@@ -75,15 +87,8 @@ python main.py --save_dir ./model --batch_size 128 --max_num_epoch 100 --split_t
 # Testing
 python test.py --split_type fvfv --sh unseenunheard --test random
 ```
-
+# Baseline
+For baseline results, we leverage the work from FOP.
+* [Paper](https://arxiv.org/abs/2112.10483)
+* [Code](https://github.com/msaadsaeed/FOP)
 ## Citing SBNet
-```
-@inproceedings{saeed2022fusion,
-  title={Fusion and orthogonal projection for improved face-voice association},
-  author={Saeed, Muhammad Saad and Khan, Muhammad Haris and Nawaz, Shah and Yousaf, Muhammad Haroon and Del Bue, Alessio},
-  booktitle={ICASSP 2022-2022 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)},
-  pages={7057--7061},
-  year={2022},
-  organization={IEEE}
-}
-```
