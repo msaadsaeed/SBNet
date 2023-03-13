@@ -4,7 +4,8 @@
 Official implementation of SBNet as described in "Single-branch Network for Multimodal Training". 
 
 <p align="center">
-  <l align="center">Paper: </l>   
+  <l align="center">Manuscript Link: </l>  
+  <a href='https://www.researchgate.net/publication/369184026_Single-branch_Network_for_Multimodal_Training' align="center">SBNet</a>   
 </p>
 
 <p align="center">
@@ -91,4 +92,22 @@ python test.py --split_type fvfv --sh unseenunheard --test random
 For baseline results, we leverage the work from FOP.
 * [Paper](https://arxiv.org/abs/2112.10483)
 * [Code](https://github.com/msaadsaeed/FOP)
-## Citing SBNet
+## Citation
+```BibTeX
+@inproceedings{saeed2023sbnet,
+  title={Single-branch Network for Multimodal Training},
+  author={Saeed, Muhammad Saad and Nawaz, Shah and Yousaf and Khan, Muhammad Haris and Zaheer, Muhammad Zaigham and Nandakumar, Karthik and Yousaf, Muhammad Haroon and Mahmood, Arf},
+  booktitle={ICASSP 2023-2023 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)},
+  year={2023},
+  organization={IEEE}
+}
+
+@inproceedings{saeed2022fusion,
+  title={Fusion and Orthogonal Projection for Improved Face-Voice Association},
+  author={Saeed, Muhammad Saad and Khan, Muhammad Haris and Nawaz, Shah and Yousaf, Muhammad Haroon and Del Bue, Alessio},
+  booktitle={ICASSP 2022-2022 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)},
+  pages={7057--7061},
+  year={2022},
+  organization={IEEE}
+}
+
