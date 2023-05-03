@@ -4,8 +4,11 @@
 Official implementation of SBNet as described in "Single-branch Network for Multimodal Training". 
 
 <p align="center">
-  <l align="center">Manuscript Link: </l>  
-  <a href='https://www.researchgate.net/publication/369184026_Single-branch_Network_for_Multimodal_Training' align="center">SBNet</a>   
+  <l align="center">Paper Link: </l>  
+  <a href='https://www.researchgate.net/publication/369184026_Single-branch_Network_for_Multimodal_Training' align="center">SBNet</a>
+</p>
+<p align="center">
+  <l align="center">Presentation: https://youtu.be/bXeiy8kQQtY</l>
 </p>
 
 <p align="center">
