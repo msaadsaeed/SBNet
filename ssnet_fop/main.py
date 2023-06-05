@@ -318,7 +318,7 @@ if __name__ == '__main__':
     parser.add_argument('--save_dir', type=str, default='model', help='Directory for saving checkpoints.')
     parser.add_argument('--lr', type=float, default=1e-2, metavar='LR',
                         help='learning rate (default: 1e-4)') 
-    parser.add_argument('--batch_size', type=int, default=32, help='Batch size for training.')
+    parser.add_argument('--batch_size', type=int, default=128, help='Batch size for training.')
     parser.add_argument('--max_num_epoch', type=int, default=500, help='Max number of epochs to train, number')
     parser.add_argument('--alpha_list', type=list, default=[1], help='Alpha Values List')
     parser.add_argument('--dim_embed', type=int, default=128,
