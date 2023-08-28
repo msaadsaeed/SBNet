@@ -1,39 +1,5 @@
 import tensorflow as tf
 from tensorflow.contrib.layers.python.layers import fully_connected
-# from scipy.spatial import distance
-# import numpy as np
-
-hidden_1 = 512
-hidden_2 = 256
-hidden_3 = 128
-face_dim = 4096
-voice_dim = 1024
-CENTER_LOSS_ALPHA = 0.5
-
-
-wf = {     
-      'h1': tf.Variable(tf.random_normal([face_dim, hidden_1])),
-      'h2': tf.Variable(tf.random_normal([hidden_1, hidden_2])),
-      'h3': tf.Variable(tf.random_normal([hidden_2, hidden_3])),      
-      }
-
-wv = {     
-      'h1': tf.Variable(tf.random_normal([voice_dim, hidden_1])),
-      'h2': tf.Variable(tf.random_normal([hidden_1, hidden_2])),
-      'h3': tf.Variable(tf.random_normal([hidden_2, hidden_3])),      
-      }
-
-bf = {
-      'b1': tf.Variable(tf.random_normal([hidden_1])),
-      'b2': tf.Variable(tf.random_normal([hidden_2])),
-      'b3': tf.Variable(tf.random_normal([hidden_3])),
-      }
-bv = {
-      'b1': tf.Variable(tf.random_normal([hidden_1])),
-      'b2': tf.Variable(tf.random_normal([hidden_2])),
-      'b3': tf.Variable(tf.random_normal([hidden_3])),
-      }
-
 
 def add_fc(inputs, outdim, train_phase, scope_in):
     fc =  fully_connected(inputs, outdim, activation_fn=None, scope=scope_in + '/fc')
@@ -61,40 +27,17 @@ class Wt_Add(tf.keras.layers.Layer):
         
         self.w1 = tf.Variable(initial_value = w_init(shape = (1,), dtype=tf.float32), trainable = True)
         self.w2 = tf.Variable(initial_value = w_init(shape = (1,), dtype=tf.float32), trainable = True)
-        
-        # self.w1 = tf.Variable(initial_value = w_init(seed=1, dtype=tf.dtypes.float32), trainable = True)
-        # self.w1 = tf.Variable(w_init(1, ))
-        # self.w1 = tf.Variable(w_init(shape=(1, ), dtype=np.float32), trainable=True)
-        # self.w2 = tf.Variable(initial_value = w_init(shape=(1, ), dtype="float32"), trainable=True)
     
     def call(self, input1, input2):
         return tf.multiply(input1,self.w1) + tf.multiply(input2, self.w2)
 
 def embedding_loss(im_embeds, sent_embeds, im_labels, args):
     
-    # z = tf.layers.dense(tf.stack([im_embeds, sent_embeds], axis = 1), 128,
-    #                     activation=tf.nn.sigmoid)
-    
-    # print(im_embeds.shape)
     comb_layer = Wt_Add(1, 1)
     logits_comb= comb_layer(im_embeds, sent_embeds)
-    # logits_comb = tf.add(im_embeds, sent_embeds)
     
-    # h = logits_comb * im_embeds + (1 - logits_comb) * sent_embeds
-    # logits = tf.layers.dense(h, 901)
-    # logits = fully_connected(h, 901, activation_fn=None)
-    
-    #logits_comb = tf.concat([im_embeds, sent_embeds], 1)
-
     logits = fully_connected(logits_comb, 901, activation_fn=None)
     
-    # logits = add_fc(logits_comb, 901, True, 'comb_embed')
-    # logits = fully_connected(logits_comb, 901, activation_fn=None,
-    #                          scope = 'embed_comb')
-    
-    # im_fc1 = add_fc(layer_3, fc_dim, train_phase, 'im_embed_1')
-    
-    # logits= tf.nn.l2_normalize(logits, 1, epsilon=1e-10)
 
     with tf.variable_scope('loss') as scope:
         c_loss, _ = center_loss(logits_comb, im_labels,0.3, 901)
@@ -104,22 +47,6 @@ def embedding_loss(im_embeds, sent_embeds, im_labels, args):
         
         softmax_loss_v = tf.reduce_mean(tf.nn.sparse_softmax_cross_entropy_with_logits(logits=logits, labels=im_labels))
         
-        # face_only, _ = get_git_loss(im_embeds, im_labels, 901)
-        
-        # voice_only, _ = get_git_loss(sent_embeds, im_labels, 901)
-        
-        # face_only, _ = center_loss(im_embeds, im_labels, 0.3, 901)
-        
-        # voice_only, _ = center_loss(sent_embeds, im_labels, 0.3, 901)
-
-        # scope.reuse_variables()
-        # c_loss_img, _ = center_loss(im_embeds, im_labels, 0.9, 901)
-        # scope.reuse_variables()
-        # c_loss_voice, _ = center_loss(sent_embeds, im_labels, 0.9, 901)
-
-#        total_loss = softmax_loss_v + 0.8 * c_loss #+ 0.1* c_loss_img + 0.9* c_loss_voice
-#        total_loss = c_loss
-        # total_loss = softmax_loss_v
         total_loss = softmax_loss_v + c_loss
 
 
@@ -219,26 +146,14 @@ def embedding_model(im_feats, sent_feats, train_phase, im_labels,
     """
     
     
-    # Image branch.
-    # layer_1 = tf.add(tf.matmul(im_feats, wf['h1']), bf['b1'])
-    # layer_2 = tf.add(tf.matmul(layer_1, wf['h2']), bf['b2'])
-    # layer_3 = tf.add(tf.matmul(layer_2, wf['h3']), bf['b3'])
     
     im_fc1 = add_fc(im_feats, fc_dim, train_phase, 'im_embed_1')
     
-    # im_fc2 = fully_connected(im_fc1, embed_dim, activation_fn=None,
-    #                           scope = 'im_embed_2')
-    # im_fc2 = tf.layers.dense(im_fc1, embed_dim, activation=tf.nn.tanh)
     i_embed = tf.nn.l2_normalize(im_fc1, 1, epsilon=1e-10)
-    # Voice branch.
-    # layer_1 = tf.add(tf.matmul(sent_feats, wv['h1']), bv['b1'])
-    # layer_2 = tf.add(tf.matmul(layer_1, wv['h2']), bv['b2'])
-    # layer_3 = tf.add(tf.matmul(layer_2, wv['h3']), bv['b3'])
+    
     
     sent_fc1 = add_fc(sent_feats, fc_dim, train_phase,'sent_embed_1')
-    # sent_fc2 = fully_connected(sent_fc1, embed_dim, activation_fn=None,
-    #                             scope = 'sent_embed_2')
-    # sent_fc2 = tf.layers.dense(sent_fc1, embed_dim, activation=None)
+    
     s_embed = tf.nn.l2_normalize(sent_fc1, 1, epsilon=1e-10)
     return i_embed, s_embed
 
