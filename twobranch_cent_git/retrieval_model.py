@@ -1,6 +1,8 @@
 import tensorflow as tf
 from tensorflow.contrib.layers.python.layers import fully_connected
 
+CENTER_LOSS_ALPHA = 0.5
+
 def add_fc(inputs, outdim, train_phase, scope_in):
     fc =  fully_connected(inputs, outdim, activation_fn=None, scope=scope_in + '/fc')
     fc_bnorm = tf.layers.batch_normalization(fc, momentum=0.1, epsilon=1e-5,
